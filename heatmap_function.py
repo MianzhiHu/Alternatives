@@ -58,7 +58,6 @@ def heatmap_function(path, zipcode_template_path, save_path, file_name, sheet_nu
         zipcode = json.load(f)
 
     # create a choropleth map
-
     m = folium.Map(location=[41.8781, -87.6298], zoom_start=10)
     folium.Choropleth(
         geo_data=zipcode,
