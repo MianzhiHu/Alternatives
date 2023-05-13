@@ -98,6 +98,9 @@ rf_best.fit(X_train, y_train)
 y_pred = rf_best.predict(X_test)
 print(accuracy_score(y_test, y_pred))
 print(rf_best.score(X_test, y_test))
+print(f'R^2: {r2_score(y_test, y_pred)}')
+print(f'MSE: {mean_squared_error(y_test, y_pred)}')
+print(f'RMSE: {np.sqrt(mean_squared_error(y_test, y_pred))}')
 
 
 # visualize the confusion matrix
@@ -166,6 +169,7 @@ rf_regressor = RandomForestRegressor(random_state=42)
 rf_regressor.fit(X_train, y_train)
 y_pred = rf_regressor.predict(X_test)
 print(mean_squared_error(y_test, y_pred))
+print(mean_absolute_error(y_test, y_pred))
 print(r2_score(y_test, y_pred))
 
 # visualize the model by plotting the predicted values against the actual values
