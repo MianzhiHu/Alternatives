@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from scipy.stats import pearsonr
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression, LogisticRegression
 from sklearn.metrics import accuracy_score, r2_score, mean_absolute_error, mean_squared_error, roc_curve, roc_auc_score
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import cross_val_score
@@ -75,8 +75,25 @@ X = df_bhs_ml.iloc[:, :-1]
 y = df_bhs_ml.iloc[:, -1]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
+logistic = LogisticRegression()
+logistic.fit(X_train, y_train)
+y_pred = logistic.predict(X_test)
+print(accuracy_score(y_test, y_pred))
+print(r2_score(y_test, y_pred))
+print(confusion_matrix(y_test, y_pred))
+
 # logistic regression does not work well
+
+lr = LinearRegression()
+lr.fit(X_train, y_train)
+y_pred = lr.predict(X_test)
+print(r2_score(y_test, y_pred))
+print(mean_absolute_error(y_test, y_pred))
+print(mean_squared_error(y_test, y_pred))
+
 # multiple linear regression does not work well
+
+# now try random forest
 rf = RandomForestClassifier(random_state=42, criterion='entropy')
 param_grid = {
     'n_estimators': [100, 200, 300, 400, 500],
