@@ -131,5 +131,20 @@ folium.Choropleth(
 folium.LayerControl().add_to(n_Chicago)
 n_Chicago.save('maps/chicago_program_success_choropleth.html')
 
+# create an empty map with Chicago zipcodes
+empty_map = folium.Map(location=[41.8781, -87.6298], zoom_start=10)
+folium.Choropleth(
+    geo_data=zipcode_Chicago,
+    name='choropleth',
+    key_on='feature.properties.zip',
+    fill_color='YlGn',
+    fill_opacity=0,
+    line_opacity=0.7,
+    nan_fill_color='transparent',
+).add_to(empty_map)
+folium.LayerControl().add_to(empty_map)
+empty_map.save('maps/empty_map_choropleth.html')
+
+
 
 
