@@ -30,6 +30,11 @@ for i in range(5, 10):
     print('Correlation between {} and {}: {}'.format(df_bhs.columns[i], df_bhs.columns[10], corr))
     print('p-value: {}'.format(p))
 
+# test the correlation between pre- and post-test scores
+corr, p = pearsonr(df_community_all.iloc[:, 1], df_community_all.iloc[:, 2])
+print('Correlation between {} and {}: {}'.format(df_community_all.columns[1], df_community_all.columns[2], corr))
+print('p-value: {}'.format(p))
+
 # visualize the correlation
 plt.bar(df_bhs.columns[5:10], corr_list)
 plt.ylabel('Correlation')
@@ -223,6 +228,12 @@ dot_data = tree.export_graphviz(rf_regressor.estimators_[0], out_file=None, feat
 graph = graphviz.Source(dot_data)
 graph.render('maps/decision_tree_community')
 
+# check the number of each category in Program Name
+df_community_all['Program Name'].value_counts()
+df_bhs['Program Name'].value_counts()
+
+df_bhs['Age'].describe()
+df_community_all['Age'].describe()
 
 
 
